@@ -1,0 +1,13 @@
+INSTUPAESpackage.AESmodule
+C:\Users\aconstantino\Documents\GitHub\465-Computer-Security\AES\AESpackage\AESmodule.py
+INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0
+inverseShiftRows=8
+inverseSubByte=6
+finiteFieldMultiply=10
+keyExpansion=4
+AESpackage.AESmodule=2
+shiftRows=7
+finiteFieldAdd=9
+rotateWord=3
+subWord=1
+subBytes=5

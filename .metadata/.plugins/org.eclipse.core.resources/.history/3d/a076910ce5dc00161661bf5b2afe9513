@@ -1,0 +1,40 @@
+'''
+Created on Jan 17, 2017
+
+@author: aconstantino
+'''
+
+import sys
+import io
+
+def subWord(word):
+    print('')
+    
+def rotateWord(word):
+    print('')
+    
+def keyExpansion():
+    print('')
+    
+def subBytes():
+    print('')
+
+def inverseSubByte():
+    print('')
+
+def shiftRows():
+    print('')
+    
+def inverseShiftRows():
+    print('')
+    
+def finiteFieldAdd(num1, num2):
+    print('')
+    
+def finiteFieldMultiply(num1, num2):
+    print('')
+
+
+
+if __name__ == '__main__':
+    pass
