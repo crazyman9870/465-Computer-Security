@@ -4,8 +4,6 @@ Created on Jan 17, 2017
 @author: aconstantino
 '''
 
-''' Imports '''
-
 import sys
 import io
 
