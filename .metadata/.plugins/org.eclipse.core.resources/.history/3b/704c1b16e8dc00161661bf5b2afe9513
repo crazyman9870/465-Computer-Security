@@ -8,19 +8,19 @@ import sys
 import io
 
 
-def ffAdd(num1, num2):
+def finiteFieldAdd(num1, num2):
     print('')
 
 def xtime(num):
     print('')
     
-def ffMultiply(num1, num2):
+def finiteFieldMultiply(num1, num2):
     print('')
 
 def subWord(word):
     print('')
     
-def rotWord(word):
+def rotateWord(word):
     print('')
     
 def keyExpansion():
@@ -29,19 +29,19 @@ def keyExpansion():
 def subBytes():
     print('')
 
-def invSubBytes():
+def invertSubByte():
     print('')
 
 def shiftRows():
     print('')
     
-def invShiftRows():
+def invertShiftRows():
     print('')
     
 def mixColumns():
     print('')
     
-def invMixColumns():
+def invertMixColumns():
     print('')
     
 def addRoundKey(roundNum):
@@ -50,7 +50,7 @@ def addRoundKey(roundNum):
 def cipher():
     print('')
     
-def invCipher():
+def invertCipher():
     print('')
 
 if __name__ == '__main__':
