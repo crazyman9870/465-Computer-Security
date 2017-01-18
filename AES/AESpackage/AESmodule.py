@@ -20,12 +20,12 @@ rotatedWord = []
 subbedWord = []
 
 roundKey = [] # Extended key size 240
-for i in range(240):
-	roundKey.append(0)
+#for i in range(240):
+#	roundKey.append(0)
 
 key = [] # Original key size 32
-for i in range(32):
-	key.append(0)
+#for i in range(32):
+#	key.append(0)
 
 Rcon = [0x00, # Rcon[] is 1-based, so the first entry is just a place holder 
 	0x01, 0x02, 0x04, 0x08,
@@ -123,12 +123,15 @@ def keyExpansion():
 	temp = [0,0,0,0] # Create fixed array
 
 	for i in range(Nk):
-		roundKey[4*i] = key[4*i]
-		roundKey[4*i+1] = key[4*i+1]
-		roundKey[4*i+2] = key[4*i+2]
-		roundKey[4*i+3] = key[4*i+3]
+		roundKey.append(key[4*i])
+		roundKey.append(key[4*i+1])
+		roundKey.append(key[4*i+2])
+		roundKey.append(key[4*i+3])
 
 	i = Nk
+	
+	#keyPrinter()
+	#roundKeyPrinter()
 
 	while i < (Nb * (Nr+1)):
 
@@ -140,6 +143,7 @@ def keyExpansion():
 			subWord(rotatedWord)
 			for j in range(4):
 				temp[j] = subbedWord[j]
+			#print(' '.join(format(c, '02x') for c in temp))
 			temp[0] = temp[0] ^ Rcon[i//Nk]
 
 		elif (Nk > 6) and (i % Nk == 4):
@@ -148,11 +152,11 @@ def keyExpansion():
 				temp[j] = subbedWord[j]
 
 		for j in range(4):
-			roundKey[4*i + j] = roundKey[(i-Nk) * 4 + j] ^ temp[j]
+			roundKey.append(roundKey[(i-Nk) * 4 + j] ^ temp[j])
 
 		i += 1
 
-	#print(key)
+		#roundKeyPrinter()	
 	
 def subBytes():
 	global currState
@@ -264,7 +268,7 @@ def cipher():
 	addRoundKey(0) # First round
 
 	print('here')
-	printer()
+	statePrinter()
 
 	for i in range(1,Nr): # For the number of rounds 2 to Nr-1
 		subBytes()
@@ -292,10 +296,15 @@ def invCipher():
 	invSubBytes()
 	addRoundKey(0)
 
-def printer():
+def statePrinter():
 	for r in currState:
-		for c in r:
-			print(format(c, '02x'))
+		print(' '.join(format(c, '02x') for c in r))
+
+def keyPrinter():
+	print(' '.join(format(c, '02x') for c in key))
+	
+def roundKeyPrinter():
+	print(' '.join(format(c, '02x') for c in roundKey))
 
 def main():
 
@@ -332,16 +341,16 @@ def main():
 
 	Nk = len(currentKey)//4
 	Nr = Nk + 6
-	print(currentKey, Nk, Nr)
-
+	print(' '.join(format(k , '02x') for k in key), Nk, Nr)
+	
 	for i in range(Nk*4):
-		key[i] = currentKey[i]
+		key.append(currentKey[i])
 
 	for i in range(4): # For each row
 		for j in range(4): # For each column
 			currState[j].append(inputData[i*4 + j])
 
-	printer()
+	statePrinter()
 
 	keyExpansion()
 	cipher()

@@ -315,3 +315,156 @@ java.lang.RuntimeException: Finished restoring information for: C:\Users\aconsta
 
 !ENTRY org.python.pydev.shared_core 4 4 2017-01-17 11:24:46.207
 !MESSAGE Info: Rebuilding internal caches: C:\Users\aconstantino\Documents\GitHub\465-Computer-Security\.metadata\.plugins\org.eclipse.core.resources\.projects\AES\com.python.pydev.analysis\AdditionalProjectInterpreterInfo.pydevinfo (Expected error to be provided and got no error!)
+!SESSION 2017-01-18 10:13:48.633 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-01-18 10:13:52.236
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.python.pydev.shared_core 1 1 2017-01-18 10:14:51.276
+!MESSAGE No existing console history at: C:\Users\aconstantino\Documents\GitHub\465-Computer-Security\.metadata\.plugins\org.python.pydev.shared_interactive_console\history.py
+!STACK 0
+java.io.FileNotFoundException: C:\Users\aconstantino\Documents\GitHub\465-Computer-Security\.metadata\.plugins\org.python.pydev.shared_interactive_console\history.py (The system cannot find the file specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileReader.<init>(Unknown Source)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleGlobalHistory.load(ScriptConsoleGlobalHistory.java:96)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleGlobalHistory.<init>(ScriptConsoleGlobalHistory.java:45)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleGlobalHistory.<clinit>(ScriptConsoleGlobalHistory.java:37)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleHistory.<init>(ScriptConsoleHistory.java:56)
+	at org.python.pydev.shared_interactive_console.console.ui.ScriptConsole.<init>(ScriptConsole.java:183)
+	at org.python.pydev.debug.newconsole.PydevConsole.<init>(PydevConsole.java:84)
+	at org.python.pydev.debug.newconsole.PydevDebugConsole.<init>(PydevDebugConsole.java:29)
+	at org.python.pydev.debug.newconsole.PydevConsoleFactory.createDebugConsole(PydevConsoleFactory.java:284)
+	at org.python.pydev.debug.newconsole.PydevConsoleFactory.createDebugConsole(PydevConsoleFactory.java:259)
+	at org.python.pydev.debug.console.PromptOverlay.<init>(PromptOverlay.java:77)
+	at org.python.pydev.debug.console.PromptOverlayConsolePageParticipant.init(PromptOverlayConsolePageParticipant.java:48)
+	at org.eclipse.ui.internal.console.ConsoleView$3.run(ConsoleView.java:326)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.console.ConsoleView.doCreatePage(ConsoleView.java:323)
+	at org.eclipse.ui.part.PageBookView.createPage(PageBookView.java:400)
+	at org.eclipse.ui.part.PageBookView.partActivated(PageBookView.java:743)
+	at org.eclipse.ui.internal.console.ConsoleView$4.run(ConsoleView.java:395)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4203)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3819)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:687)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:673)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
+
+!ENTRY org.python.pydev.debug 4 4 2017-01-18 11:02:33.321
+!MESSAGE Error fetching a variable
+!STACK 1
+org.eclipse.core.runtime.CoreException: pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 41, 'pid_9580_id_58891208072\t58891741000\tLOCAL\tkeyPrinter()\tro\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: 'ro'
+
+	at org.python.pydev.debug.model.remote.EvaluateExpressionCommand.getResponse(EvaluateExpressionCommand.java:76)
+	at org.python.pydev.debug.model.PyWatchExpressionDelegate.commandComplete(PyWatchExpressionDelegate.java:125)
+	at org.python.pydev.debug.model.remote.AbstractDebuggerCommand.processResponse(AbstractDebuggerCommand.java:151)
+	at org.python.pydev.debug.model.remote.DebuggerReader.processCommand(DebuggerReader.java:118)
+	at org.python.pydev.debug.model.remote.DebuggerReader.run(DebuggerReader.java:141)
+	at java.lang.Thread.run(Unknown Source)
+!SUBENTRY 1 org.python.pydev.debug 4 4 2017-01-18 11:02:33.322
+!MESSAGE pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 41, 'pid_9580_id_58891208072\t58891741000\tLOCAL\tkeyPrinter()\tro\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: 'ro'
+
+
+!ENTRY org.python.pydev.debug 4 4 2017-01-18 11:02:33.500
+!MESSAGE Error fetching a variable
+!STACK 1
+org.eclipse.core.runtime.CoreException: pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 43, 'pid_9580_id_58891208072\t58891741000\tLOCAL\tkeyPrinter()\tro\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: 'ro'
+
+	at org.python.pydev.debug.model.remote.EvaluateExpressionCommand.getResponse(EvaluateExpressionCommand.java:76)
+	at org.python.pydev.debug.model.PyWatchExpressionDelegate.commandComplete(PyWatchExpressionDelegate.java:125)
+	at org.python.pydev.debug.model.remote.AbstractDebuggerCommand.processResponse(AbstractDebuggerCommand.java:151)
+	at org.python.pydev.debug.model.remote.DebuggerReader.processCommand(DebuggerReader.java:118)
+	at org.python.pydev.debug.model.remote.DebuggerReader.run(DebuggerReader.java:141)
+	at java.lang.Thread.run(Unknown Source)
+!SUBENTRY 1 org.python.pydev.debug 4 4 2017-01-18 11:02:33.500
+!MESSAGE pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 43, 'pid_9580_id_58891208072\t58891741000\tLOCAL\tkeyPrinter()\tro\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: 'ro'
+
+
+!ENTRY org.python.pydev.debug 4 4 2017-01-18 11:03:08.498
+!MESSAGE Error fetching a variable
+!STACK 1
+org.eclipse.core.runtime.CoreException: pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 33, 'pid_4844_id_812685231384\t812698614304\tLOCAL\t\t\t\t\tkeyPrinter()\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: ''
+
+	at org.python.pydev.debug.model.remote.EvaluateExpressionCommand.getResponse(EvaluateExpressionCommand.java:76)
+	at org.python.pydev.debug.model.PyWatchExpressionDelegate.commandComplete(PyWatchExpressionDelegate.java:125)
+	at org.python.pydev.debug.model.remote.AbstractDebuggerCommand.processResponse(AbstractDebuggerCommand.java:151)
+	at org.python.pydev.debug.model.remote.DebuggerReader.processCommand(DebuggerReader.java:118)
+	at org.python.pydev.debug.model.remote.DebuggerReader.run(DebuggerReader.java:141)
+	at java.lang.Thread.run(Unknown Source)
+!SUBENTRY 1 org.python.pydev.debug 4 4 2017-01-18 11:03:08.498
+!MESSAGE pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 33, 'pid_4844_id_812685231384\t812698614304\tLOCAL\t\t\t\t\tkeyPrinter()\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: ''
+
+
+!ENTRY org.python.pydev.debug 4 4 2017-01-18 11:03:08.598
+!MESSAGE Error fetching a variable
+!STACK 1
+org.eclipse.core.runtime.CoreException: pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 35, 'pid_4844_id_812685231384\t812698614304\tLOCAL\t\t\t\t\tkeyPrinter()\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: ''
+
+	at org.python.pydev.debug.model.remote.EvaluateExpressionCommand.getResponse(EvaluateExpressionCommand.java:76)
+	at org.python.pydev.debug.model.PyWatchExpressionDelegate.commandComplete(PyWatchExpressionDelegate.java:125)
+	at org.python.pydev.debug.model.remote.AbstractDebuggerCommand.processResponse(AbstractDebuggerCommand.java:151)
+	at org.python.pydev.debug.model.remote.DebuggerReader.processCommand(DebuggerReader.java:118)
+	at org.python.pydev.debug.model.remote.DebuggerReader.run(DebuggerReader.java:141)
+	at java.lang.Thread.run(Unknown Source)
+!SUBENTRY 1 org.python.pydev.debug 4 4 2017-01-18 11:03:08.598
+!MESSAGE pydevd error:Unexpected exception in process_net_command.
+Initial params: (113, 35, 'pid_4844_id_812685231384\t812698614304\tLOCAL\t\t\t\t\tkeyPrinter()\t1'). Exception: Traceback (most recent call last):
+  File "C:\Users\aconstantino\.p2\pool\plugins\org.python.pydev_5.4.0.201611281236\pysrc\_pydevd_bundle\pydevd_process_net_command.py", line 387, in process_net_command
+    cmd_id == CMD_EXEC_EXPRESSION, int(trim) == 1, temp_name)
+ValueError: invalid literal for int() with base 10: ''
+

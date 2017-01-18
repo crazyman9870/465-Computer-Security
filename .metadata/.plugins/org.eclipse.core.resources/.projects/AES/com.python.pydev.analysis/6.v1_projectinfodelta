@@ -1,8 +1,1 @@
-INSTUPAESpackage.AESmodule
-C:\Users\aconstantino\Documents\GitHub\465-Computer-Security\AES\AESpackage\AESmodule.py
-INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0
-keyExpansion=4
-AESpackage.AESmodule=2
-rotateWord=3
-subWord=1
-subBytes=5
+DELSTRAESpackage.AESmodule
