@@ -80,29 +80,6 @@ InvSbox = [
 
 ''' Key function definitions '''
 
-def ffAdd(x, y):
-	return x ^ y & 0xff
-
-def xTime(x):
-	if (x & 0x80) == 0x80:
-		x <<= 1
-		x ^= 0x11b
-	else:
-		x <<= 1
-	return x
-	
-def ffMultiply(x, y):
-	
-	z = 0x00
-
-	for i in range(8):
-		if (y & 0x01) == 0x01:
-			z = ffAdd(z, x)
-		x = xTime(x)
-		y >>= 1
-
-	return z
-
 def subWord(word):
 	global subbedWord
 	subbedWord = []
@@ -209,7 +186,26 @@ def invShiftRows():
 		currState[i][1] = newRow[1]
 		currState[i][2] = newRow[2]
 		currState[i][3] = newRow[3]
+
+def ffAdd(x, y):
+	return x ^ y
+
+def xTime(x):
+	hibit = x & 0x80
+	x <<= 1
+	if hibit == 0x80:
+		x ^= 0x11b
+	return x
 	
+def ffMultiply(x, y):
+	z = 0x00
+	for i in range(8):
+		if y & 1 == 1:
+			z = ffAdd(z, x)
+		x = xTime(x)
+		y >>= 1
+	return z % 256
+
 def mixColumns():
 
 	global currState
@@ -217,7 +213,9 @@ def mixColumns():
 	newState = [[],[],[],[]] # Create an new state in a 4x4 array
 
 	for i in range(4): # For each row
-		newState[i] = currState[i] # Copy each column
+		for j in range(4): # For each column
+			newState[i].append(currState[i][j])
+		#newState[i] = currState[i] # Copy each column
 
 	m = [[0x02, 0x03, 0x01, 0x01],
 		[0x01, 0x02, 0x03, 0x01],
@@ -230,8 +228,10 @@ def mixColumns():
 		newState[2][c] = ffMultiply(currState[0][c], m[2][0]) ^ ffMultiply(currState[1][c], m[2][1]) ^ ffMultiply(currState[2][c], m[2][2]) ^ ffMultiply(currState[3][c], m[2][3])
 		newState[3][c] = ffMultiply(currState[0][c], m[3][0]) ^ ffMultiply(currState[1][c], m[3][1]) ^ ffMultiply(currState[2][c], m[3][2]) ^ ffMultiply(currState[3][c], m[3][3])
 
+	
 	for i in range(4): # For each row
-		currState[i] = newState[i] # Copy each column
+		for j in range(4): # For each column
+			currState[i][j]  = newState[i][j]
 
 # Same as normal mixColumns but the m matrix is different
 def invMixColumns():
@@ -241,7 +241,9 @@ def invMixColumns():
 	newState = [[],[],[],[]] # Create an new state in a 4x4 array
 
 	for i in range(4): # For each row
-		newState[i] = currState[i] # Copy each column	
+		for j in range(4): # For each column
+			newState[i].append(currState[i][j])
+		#newState[i] = currState[i] # Copy each column	
 
 	m = [[0x0e, 0x0b, 0x0d, 0x09],
 		[0x09, 0x0e, 0x0b, 0x0d],
@@ -255,27 +257,30 @@ def invMixColumns():
 		newState[3][c] = ffMultiply(currState[0][c], m[3][0]) ^ ffMultiply(currState[1][c], m[3][1]) ^ ffMultiply(currState[2][c], m[3][2]) ^ ffMultiply(currState[3][c], m[3][3])
 
 	for i in range(4): # For each row
-		currState[i] = newState[i] # Copy each column
+		for j in range(4): # For each column
+			currState[i][j]  = newState[i][j]
 	
 def addRoundKey(roundNum):
 	global currState
 	for i in range(4): # For each row
 		for j in range(4): # For each column
-			currState[j][i] = currState[j][i] ^ roundKey[roundNum*Nb*4 + i*Nb + j]
+			currState[j][i] = currState[j][i] ^ roundKey[roundNum*Nb*4+i*Nb+j]
 
 def cipher():
 	
 	addRoundKey(0) # First round
 
-	print('here')
-	statePrinter()
+	#statePrinter()
 
 	for i in range(1,Nr): # For the number of rounds 2 to Nr-1
 		subBytes()
+		#statePrinter()
 		shiftRows()
+		#statePrinter()
 		mixColumns()
+		#statePrinter()
 		addRoundKey(i)
-
+		#statePrinter()
 	# Final round
 	subBytes()
 	shiftRows()
@@ -299,6 +304,7 @@ def invCipher():
 def statePrinter():
 	for r in currState:
 		print(' '.join(format(c, '02x') for c in r))
+	print('')
 
 def keyPrinter():
 	print(' '.join(format(c, '02x') for c in key))
@@ -314,13 +320,13 @@ def main():
 	global currState
 
 	# Parameters from appendix B in FIPS
-	inputData = [0x32,0x43,0xf6,0xa8,0x88,0x5a,0x30,0x8d,0x31,0x31,0x98,0xa2,0xe0,0x37,0x07,0x34]
-	key128 = [0x2b,0x7e,0x15,0x16,0x28,0xae,0xd2,0xa6,0xab,0xf7,0x15,0x88,0x09,0xcf,0x4f,0x3c]
+	#inputData = [0x32,0x43,0xf6,0xa8,0x88,0x5a,0x30,0x8d,0x31,0x31,0x98,0xa2,0xe0,0x37,0x07,0x34]
+	#key128 = [0x2b,0x7e,0x15,0x16,0x28,0xae,0xd2,0xa6,0xab,0xf7,0x15,0x88,0x09,0xcf,0x4f,0x3c]
 
 	# Input data from appendix C in FIPS 
-	#inputData = [0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88,0x99,0xaa,0xbb,0xcc,0xdd,0xee,0xff]
+	inputData = [0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88,0x99,0xaa,0xbb,0xcc,0xdd,0xee,0xff]
 	# 128 key from appendix C in FIPS 
-	#key128 = [0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f]
+	key128 = [0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f]
 	# 192 key from appendix C in FIPS 
 	key192 = [0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17]
 	# 256 key from appendix C in FIPS 
@@ -341,7 +347,7 @@ def main():
 
 	Nk = len(currentKey)//4
 	Nr = Nk + 6
-	print(' '.join(format(k , '02x') for k in key), Nk, Nr)
+	print('Number of words = ', Nk, ', Number of rounds = ', Nr)
 	
 	for i in range(Nk*4):
 		key.append(currentKey[i])
@@ -355,10 +361,10 @@ def main():
 	keyExpansion()
 	cipher()
 
-	#print(currState)
+	statePrinter()
 	invCipher()
 
-	#print(currState)
+	statePrinter()
 
 if __name__ == '__main__':
 	main()
