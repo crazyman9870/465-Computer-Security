@@ -1,0 +1,63 @@
+package hashAttack;
+
+import java.security.MessageDigest;
+import java.util.HashMap;
+import java.util.Random;
+
+public class Main {
+	
+	private static int maxStringLen = 20;
+	private static int minStringLen = 8;
+	private static Random random;
+	private static int c1 = 0;
+	private static int c2 = 0;
+	
+	public static void collisionAttack()
+	{
+		int n = 0;
+		boolean match = false;
+		HashMap<String,String> hm = new HashMap<String,String>();
+		
+		while(!match)
+		{
+			try {
+				String x = getRandomString();
+				String y = sha1(x);
+				
+				if(hm.containsKey(y))
+				{
+					match = true;
+				}
+				else
+				{
+					hm.put(y,x);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			n++;
+		}
+		
+		c2+=n;
+	}
+
+	static String sha1(String input) throws Exception 
+	{
+        MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+        byte[] result = mDigest.digest(input.getBytes());
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < result.length; i++) {
+            sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.substring(0, 6).toString(); //the second digit determines how many bites each hash will represent
+    }
+	
+	public static void main(String[] args)	{
+		random = new Random();
+		
+		System.out.println("Finished");
+		
+		
+	}
+
+}

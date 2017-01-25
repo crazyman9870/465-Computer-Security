@@ -1,0 +1,17 @@
+package hashAttack;
+
+import java.security.MessageDigest;
+import java.util.HashMap;
+import java.util.Random;
+
+public class Main {
+	
+	private static Random random;
+
+	public static void main(String[] args)	{
+		random = new Random();
+		
+		
+	}
+
+}

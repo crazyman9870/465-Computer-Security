@@ -1,0 +1,23 @@
+package hashAttack;
+
+import java.security.MessageDigest;
+import java.util.HashMap;
+import java.util.Random;
+
+public class Main {
+	
+	private static int maxStringLen = 20;
+	private static int minStringLen = 8;
+	private static Random random;
+	private static int c1 = 0;
+	private static int c2 = 0;
+
+	public static void main(String[] args)	{
+		random = new Random();
+		
+		System.out.println("Finished");
+		
+		
+	}
+
+}
