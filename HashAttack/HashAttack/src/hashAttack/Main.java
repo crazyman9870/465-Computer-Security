@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Main {
-	
-	private static int maxStringLen = 20;
-	private static int minStringLen = 8;
+
 	private static Random random;
 	private static int c1 = 0;
 	private static int c2 = 0;
@@ -66,7 +64,7 @@ public class Main {
 	}
 	
 	public static String getRandomString() {
-		int stringLength = random.nextInt(maxStringLen - minStringLen + 1) + minStringLen; //length of string to be generated
+		int stringLength = random.nextInt(13) + 8; //length from 8 chars to 20 chars
 		StringBuilder sb = new StringBuilder();
 		
 		for(int i=0;i<stringLength;i++)
