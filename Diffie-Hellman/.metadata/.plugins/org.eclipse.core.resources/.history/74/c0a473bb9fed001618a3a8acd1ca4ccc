@@ -1,0 +1,54 @@
+package diffieHellman;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		/*
+		This portion of code was run beforehand to generate 3 512 bit safe prime numbers 
+		//Generate p,a,b
+		
+		for(int i = 0;i < 3; i++) {
+			PrimeGenerator pg = new PrimeGenerator(512, 512, new SecureRandom());
+			System.out.println(pg.getSafePrime());
+			//System.out.println(pg.getStrongPrime());
+		}
+		//p = 41021727491361549413898328329602841133333183478889798596018853960608303111560790542181900326404448953857207520256434071084136572941773514372749902218898017
+		//a = 50274074977466649616850556148945463652532770515303953081943762300361916203015564351129193315202641884993566564770648199204798500382629411147391736413033839
+		//b = 52299925207932546125090569402679760474554302979221508396985876781037999046804697476481290999823180427188346165554918406369425859426321290733896971091410521
+		*/
+		
+		BigInteger p = new BigInteger("41021727491361549413898328329602841133333183478889798596018853960608303111560790542181900326404448953857207520256434071084136572941773514372749902218898017");
+		BigInteger a = new BigInteger("50274074977466649616850556148945463652532770515303953081943762300361916203015564351129193315202641884993566564770648199204798500382629411147391736413033839");
+		BigInteger b = new BigInteger("52299925207932546125090569402679760474554302979221508396985876781037999046804697476481290999823180427188346165554918406369425859426321290733896971091410521");
+		BigInteger g = new BigInteger("5");
+		
+		System.out.println("p: " + p.toString()); 
+		System.out.println("a: " + a.toString());
+		System.out.println("b: " + b.toString());
+		
+		BigInteger gap = modExp(g, a, p);
+		BigInteger gbp = new BigInteger("41996175420397840253571261223222725601815367247939509056074688037177866185295085069455103551985185478761035257316761344229780445256476164216316519783234334");
+		BigInteger gbpap = modExp(gbp, a, p);
+		
+		System.out.println("g^s%p: " + gap);
+		System.out.println("g^t%p: " + gbp);
+		System.out.println("(g^t%p)^s%p: " + gbpap.toString());
+
+	}
+
+}

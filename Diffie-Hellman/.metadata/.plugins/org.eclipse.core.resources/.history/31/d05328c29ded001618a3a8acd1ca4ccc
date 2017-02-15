@@ -1,0 +1,40 @@
+package diffieHellman;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		PrimeGenerator pg = new PrimeGenerator(512, 512, new SecureRandom());
+		BigInteger p = new BigInteger("49776957682918342690194775041813926167749631206219711896313162722314992450728456019284273927347738966590297185233262977194265917320765058551868227109435229");
+		BigInteger s = new BigInteger("30639943567072310903833443375162108733946198138250365290260978902816524850824365605243967127124516973851153291337569139313862673417573403209119144770826899");
+		BigInteger t = new BigInteger("1998286638065473057944506344030256054916203227381748916180906390214373930105605405985818224246280726328877245115163209963634633681313092395058312190549");
+		BigInteger g = new BigInteger("5");
+		
+		System.out.println("p: " + p.toString());
+		System.out.println("s: " + s.toString());
+		System.out.println("t: " + t.toString());
+		
+		BigInteger gsp = modExp(g, s, p);
+		BigInteger gtp = new BigInteger("41996175420397840253571261223222725601815367247939509056074688037177866185295085069455103551985185478761035257316761344229780445256476164216316519783234334");
+		BigInteger gtpsp = modExp(gtp, s, p);
+		
+		System.out.println("g^s%p: " + gsp);
+		System.out.println("g^t%p: " + gtp);
+		System.out.println("(g^t%p)^s%p: " + gtpsp.toString());
+	}
+
+}

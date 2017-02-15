@@ -1,0 +1,18 @@
+package diffieHellman;
+
+import java.math.BigInteger;
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package diffieHellman;
+
+public class PrimeGenerator {
+
+}
