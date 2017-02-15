@@ -1,0 +1,37 @@
+package rsa;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+	}
+	
+	private static BigInteger gdc(BigInteger p, BigInteger q) {
+		
+		if(q == BigInteger.ZERO)
+			return p;
+		
+	}
+	
+	public static void main(String[] args)	{
+		PrimeGenerator pg = new PrimeGenerator(512, 512, new SecureRandom());
+		BigInteger p = pg.getStrongPrime();
+		BigInteger q = pg.getStrongPrime();
+		//BigInteger p = new BigInteger("18699727953009340274600949831632765297414770085729917839230190628290077874583148019634710418649540186291386615200137549837929152104979472522556902110624919");
+		//BigInteger p = new BigInteger("18699727953009340274600949831632765297414770085729917839230190628290077874583148019634710418649540186291386615200137549837929152104979472522556902110624919");
+		System.out.println(p);
+		System.out.println(q);
+		BigInteger p = new BigInteger("65537");
+		System.out.println(gdc(p,6));
+	}
+
+}

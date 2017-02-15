@@ -1,0 +1,61 @@
+package rsa;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+		
+	}
+	 
+	//used pseudo code found at http://introcs.cs.princeton.edu/java/78crypto/ to write this method
+	public static BigInteger[] gcd(BigInteger p, BigInteger q) {
+		if(q == BigInteger.ZERO)
+			return new BigInteger[] {p, BigInteger.ONE, BigInteger.ZERO};
+		
+		BigInteger[] result = gcd(q, p.mod(q));
+		BigInteger d = result[0]; //will be 1 if the GCD is 1
+		BigInteger x = result[2];
+		BigInteger y = result[1].subtract((p.divide(q)).multiply(x));
+		return new BigInteger[] {d, x, y};
+	}
+	
+	public static void main(String[] args) {
+//		PrimeGenerator pg = new PrimeGenerator(512, 512, new SecureRandom());
+//		BigInteger p = pg.getStrongPrime();
+		BigInteger p = new BigInteger("18699727953009340274600949831632765297414770085729917839230190628290077874583148019634710418649540186291386615200137549837929152104979472522556902110624919");
+//		BigInteger q = pg.getStrongPrime();
+		BigInteger q = new BigInteger("22157302843814033940313562550398076830568267756245705802048390377139913295657015023214376627473562472153147744793489654462459363940706087338639656573299433");
+		BigInteger n = p.multiply(q);
+		BigInteger phiN = (p.subtract(BigInteger.ONE)).multiply((q.subtract(BigInteger.ONE)));
+		BigInteger e = new BigInteger("65537");
+		
+		BigInteger[] gcdResults = gcd(phiN,e);
+		BigInteger d = gcdResults[2];
+		
+		System.out.println("p: " + p);
+		System.out.println("q: " + q);
+		System.out.println("n: " + n);
+		System.out.println("d: " + d);
+		
+		System.out.println(gcdResults[0]);
+		System.out.println(gcdResults[1]);
+		System.out.println(gcdResults[2]);
+		
+//		BigInteger m = new BigInteger("13945293450201704814553226581615391364450294031656145321247051595402407195776124062089668593622373390496593648357111962503436238929179078384473190096718407");
+//		BigInteger encryptedM = modExp(m,e,n);
+//		System.out.println("m2: " + encryptedM.toString());
+		
+//		BigInteger m2 = new BigInteger("128886783066510198125084268910499843871240773292714442582309369253751222670441208857945662306285413627522232326192276918846229648148144071719458079268889785987384994947569248339641380559408915308658069839706381758339198585076944236715996429875936480579527628279141507597546903935375960715120659518795754869057");
+//		BigInteger decryptedM2 = modExp(m2,d,n);	
+//		System.out.println("m2: " + decryptedM2.toString());
+	}
+}

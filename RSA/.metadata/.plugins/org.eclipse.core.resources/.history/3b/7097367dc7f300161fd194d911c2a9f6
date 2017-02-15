@@ -1,0 +1,64 @@
+package rsa;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+	}
+	
+	public static BigInteger[] gcd(BigInteger p, BigInteger q)
+	{
+		if(q == BigInteger.ZERO)
+		{
+			return new BigInteger[] {p, BigInteger.ONE, BigInteger.ZERO};
+		}
+		BigInteger[] result = gcd(q, p.mod(q));
+		BigInteger d = result[0]; //will be 1 if the GCD is 1
+		BigInteger x = result[2];
+		BigInteger y = result[1].subtract((p.divide(q)).multiply(x));
+		return new BigInteger[] {d, x, y};
+	}
+	
+	public static void main(String[] args)	{
+		//Used to generate p and g test if those numbers are relatively prime to e = 65537
+		//PrimeGenerator pg = new PrimeGenerator(512, 512, new SecureRandom());
+		//BigInteger p = pg.getStrongPrime();
+		//BigInteger q = pg.getStrongPrime();
+		//System.out.println(p);
+		//System.out.println(q);
+		BigInteger p = new BigInteger("18250988297829541249691464683189811287785366993912016229679922676388702894229440981875180507335329199209528769940435083929653975530776886807056302802972389");
+		BigInteger q = new BigInteger("24952157248888661997021622129785445086710860163804529881288063790894810681626900252791747592838573330219325528540643874731651399859978584909526583165287917");
+		BigInteger e = new BigInteger("65537");
+		//Test make sure p and q are relatively prime to e
+		//System.out.println(gdc(p,e));
+		//System.out.println(gdc(q,e));
+		BigInteger n = p.multiply(q);
+		System.out.println("n: " + n);
+		BigInteger phiN = (p.subtract(BigInteger.ONE)).multiply((q.subtract(BigInteger.ONE)));
+		
+		BigInteger[] gcdResults = gcd(phiN,e);
+		BigInteger d = gcdResults[2];
+		
+		BigInteger m2 = new BigInteger("128886783066510198125084268910499843871240773292714442582309369253751222670441208857945662306285413627522232326192276918846229648148144071719458079268889785987384994947569248339641380559408915308658069839706381758339198585076944236715996429875936480579527628279141507597546903935375960715120659518795754869057");
+		BigInteger decryptedM2 = modExp(m2,d,n);	
+		System.out.println("m2: " + decryptedM2.toString());
+
+		System.out.println("phin: " + phiN);
+		
+		System.out.println("d: " + d);
+		
+		System.out.println(gcdResults[0]);
+		System.out.println(gcdResults[1]);
+		System.out.println(gcdResults[2]);
+	}
+
+}

@@ -1,0 +1,39 @@
+package rsa;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class Main {
+	
+	private static BigInteger modExp(BigInteger x, BigInteger y, BigInteger n) {
+		
+		if(y.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ONE;
+		BigInteger z = modExp(x,y.divide(new BigInteger("2")), n);
+		if (y.mod(new BigInteger("2")) == BigInteger.ZERO)
+			return z.multiply(z).mod(n);
+		return x.multiply(z.pow(2)).mod(n);
+	}
+	
+	private static BigInteger gdc(BigInteger p, BigInteger q) {
+		
+		if(q == BigInteger.ZERO)
+			return p;
+		return gdc(q, p.mod(q));
+	}
+	
+	public static void main(String[] args)	{
+		//Used to generate p and g test if those numbers are relatively prime to e = 65537
+		//PrimeGenerator pg = new PrimeGenerator(512, 512, new SecureRandom());
+		//BigInteger p = pg.getStrongPrime();
+		//BigInteger q = pg.getStrongPrime();
+		BigInteger p = new BigInteger("18250988297829541249691464683189811287785366993912016229679922676388702894229440981875180507335329199209528769940435083929653975530776886807056302802972389");
+		BigInteger q = new BigInteger("24952157248888661997021622129785445086710860163804529881288063790894810681626900252791747592838573330219325528540643874731651399859978584909526583165287917");
+		System.out.println(p);
+		System.out.println(q);
+		BigInteger e = new BigInteger("65537");
+		System.out.println(gdc(p,e));
+		System.out.println(gdc(q,e));
+	}
+
+}
